@@ -1,0 +1,21 @@
+spin_manifest_version = 2
+
+[application]
+name = "wasip2-golang"
+version = "0.2.0"
+authors = ["Rajat Jindal <rajatjindal83@gmail.com>"]
+description = ""
+
+
+[[trigger.http]]
+route = "/..."
+component = "wasip2-golang"
+
+[component.wasip2-golang]
+source = "main.wasm"
+allowed_outbound_hosts = []
+key_value_stores = ["default"]
+
+[component.wasip2-golang.build]
+command = "tinygo build -target=wasip2 --wit-package $(go list -mod=readonly -m -f '{{.Dir}}' github.com/fermyon/spin-go-sdk)/wit --wit-world http-trigger -o main.wasm -x -work main.go"
+watch = ["**/*.go", "go.mod"]
