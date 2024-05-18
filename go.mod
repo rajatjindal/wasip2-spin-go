@@ -1,4 +1,4 @@
-module github.com/rajatjindal/wasip2-spin
+module github.com/rajatjindal/wasip2-spin-go
 
 go 1.22.0
 
