@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"net/http"
 
 	spinhttp "github.com/fermyon/spin-go-sdk/http"
@@ -8,9 +9,21 @@ import (
 
 func init() {
 	spinhttp.Handle(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("x-rj-is-here", "y")
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("hello from wasip2 golang"))
+		resp, err := spinhttp.Get("https://google.com")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		defer resp.Body.Close()
+
+		raw, err := io.ReadAll(resp.Body)
+		if err != nil {
+			http.Error(w, "err.Error()", http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(resp.StatusCode)
+		w.Write(raw)
 	})
 }
 
