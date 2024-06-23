@@ -10,3 +10,5 @@ require (
 )
 
 replace github.com/fermyon/spin-go-sdk => /Users/rajatjindal/go/src/github.com/fermyon/spin-go-sdk
+
+replace github.com/ydnar/wasm-tools-go => /Users/rajatjindal/go/src/github.com/ydnar/wasm-tools-go

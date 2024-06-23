@@ -21,5 +21,5 @@ key_value_stores = ["default"]
 [component.wasip2-golang.variables]
 password = "{{ secret }}"
 [component.wasip2-golang.build]
-command = "tinygo build -target=wasip2 --wit-package $(go list -mod=readonly -m -f '{{.Dir}}' github.com/fermyon/spin-go-sdk)/wit --wit-world http-trigger -o main.wasm -x -work main.go"
+command = "tinygo build -x -target=wasip2 --wit-package $(go list -mod=readonly -m -f '{{.Dir}}' github.com/fermyon/spin-go-sdk)/wit --wit-world http-trigger -o main.wasm -x -work main.go"
 watch = ["**/*.go", "go.mod"]
